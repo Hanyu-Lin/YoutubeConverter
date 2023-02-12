@@ -1,5 +1,4 @@
 import React,{useEffect, useState} from 'react'
-import axios from 'axios'
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 import BeatLoader from "react-spinners/BeatLoader";
 const UrlForm = () => {
@@ -21,12 +20,22 @@ const UrlForm = () => {
   }
   const handleDownload = async () => {
     try{
-      const response = await axios.post('http://127.0.0.1:5000/download_video', { video_url: videoUrl });
-      console.log(response.data);
+      const response = await fetch('http://127.0.0.1:5000/download_video', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ video_url: videoUrl }),
+      });
+      if (!response.ok) {
+        throw new Error('Bad network response');
+      }
+      const result = await response.json();
+      console.log(result)
     }catch(error){
       console.error(error);
     } finally {
-    setLoading(false);
+      setLoading(false);
     }
   }
 
