@@ -4,9 +4,9 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface themeState {
   theme: string
 }
-
+const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 const initialState: themeState = {
-  theme: '',
+  theme: defaultDark ? "dark" : "light",
 }
 
 export const themeSlice = createSlice({
