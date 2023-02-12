@@ -1,0 +1,2 @@
+# Apply override to all CSS files
+*.css linguist-documentation
