@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ThemeSwitcher from './components/ThemeSwitcher'
 import UrlForm from './components/UrlForm'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <h1>Youtube Converter</h1>
       </header>
       <UrlForm></UrlForm>
+      <ThemeSwitcher/>
     </div>
   )
 }

@@ -142,8 +142,11 @@ hr {
     0 0 0 -0.1em hsl(var(--bg)), 0 0 0 -0.2em hsl(var(--accent));
   transition: box-shadow var(--_tspeed_fast) var(--_ttype_squish),
     background-color var(--_tspeed_fast) var(--_ttype_squish);
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-
+.btn::after{
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 .btn :where(svg, img, span) {
   pointer-events: none;
 }
@@ -157,6 +160,10 @@ hr {
   background-color: hsl(var(--accent) / 0.7);
   box-shadow: 0 0 0 hsl(var(--accent) / 0.3), 0 0 0 -0.1em hsl(var(--bg)),
     0 0 0 -0.2em hsl(var(--accent));
+  -webkit-transform: scale(1.25, 1.25);
+}
+.btn:hover::after{
+  opacity: 1;
 }
 
 .btn:focus {
