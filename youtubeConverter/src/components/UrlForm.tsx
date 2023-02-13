@@ -10,8 +10,8 @@ const UrlForm = () => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true)
-    handleDownload()
+    setLoading(true);
+    handleDownload();
     setVideoUrl('')
 
   }
@@ -24,16 +24,24 @@ const UrlForm = () => {
         },
         body: JSON.stringify({ video_url: videoUrl }),
       });
-      if (!response.ok) {
-        throw new Error('Bad network response');
-      }
-      const result = await response.json();
-      console.log(result)
+      const blob = await response.blob();
+      console.log(response.headers)
+      const url = URL.createObjectURL(blob);
+      openDownloadedFile(url,"video")
+
     }catch(error){
       console.error(error);
     } finally {
       setLoading(false);
     }
+  }
+  const openDownloadedFile = (url :string, fileName: string) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.mp4`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   }
 
   return (
