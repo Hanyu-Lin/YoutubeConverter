@@ -56,7 +56,7 @@ const UrlForm = () => {
             className="input"
             id="inputField"
             value={videoUrl}
-            onInput={(e) => setVideoUrl((e.target as HTMLInputElement).value)}
+            onInput={(e) => setVideoUrl(e.currentTarget.value)}
             required
             autoFocus
             maxLength={100}
@@ -95,7 +95,6 @@ const UrlForm = () => {
           )
         }
       </form>
-
     </div>
   )
 }
